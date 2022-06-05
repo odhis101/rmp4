@@ -13,7 +13,7 @@
 <body>
     <nav>
         <img class="navMenu" src="assets/img/burger-menu.png" alt="menu-icon" onclick="navMenuToggle">
-        <img src="assets/img/logo.png" alt="logo">
+        <a href="index.php"><img src="assets/img/logo.png" alt="logo"></a>
         <div class="loginBtns">
             <button class="loginBtn" type="submit">Login</button>
             <button class="signUpBtn" type="submit">Sign Up</button>

@@ -17,6 +17,19 @@
                     </svg>
                   </button>
               </form>
+              <?php
+                             
+                         
+                             if(isset($_POST['searchQuerySubmit'])){
+                                   $search = $_POST['searchQueryInput'];
+                              
+                                  
+                                   
+                                   $_SESSION['add']= $search;
+                                   header('location:lecturers.php');
+                               }
+                              ?>
+                                
                 </div>
             </div>
           
@@ -24,10 +37,10 @@
             <div class="lectrurerCardsContainer">
 <?php
 
- $search = $_SESSION["add"];
+$search = $_SESSION["add"];
 
 # $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php
-$sql = "SELECT * FROM professors " ;      
+$sql = "SELECT * FROM professors where name LIKE '%$search%'";      
 $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -51,7 +64,7 @@ if($row > 0){
 
       
 
-            <a class="lecHref" href="lecturer.php?lec_id=<?php echo $id; ?>"> <!--.............LECTURER CARD...........-->
+            <a class="lecHref" href="lecturer_details.php?lec_id=<?php echo $id; ?>"> <!--.............LECTURER CARD...........-->
                 <div class="lecturerCard">
                     <h2><?php echo  $name ?> </h2>
                     <p>29 Reviews</p>
