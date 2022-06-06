@@ -39,8 +39,8 @@
 
 $search = $_SESSION["add"];
 
-# $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php
-$sql = "SELECT * FROM professors where name LIKE '%$search%'";      
+# $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php ( for some reason it doesn't work')
+$sql = "SELECT * FROM professors"; # t
 $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($result);
 
