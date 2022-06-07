@@ -1,14 +1,14 @@
-<?php include('php/navbar_out.php'); 
+<?php 
+include('php/navbar_out.php');
 $id = $_SESSION['id'];
-if(!isset($_SESSION['id'])){
-header("Location: login.php");
-}
+
+
 ?>
 
 
     <section class="landingPage">
         <div class="landingPageHero">
-            <h3>Find your <span> Lecturer</span> And Drop a <span>Review</span><?php echo 'this is the id ', $id ?></h3>
+            <h3>Find your <span> Lecturer</span> And Drop a <span>Review</span></h3>
              <form action="#"method ='POST'>
                       <div class="searchBar_home">
                         <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder=" Enter Lecs Name"  />

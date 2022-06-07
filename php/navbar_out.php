@@ -15,7 +15,7 @@
         <img class="navMenu" src="assets/img/burger-menu.png" alt="menu-icon" onclick="navMenuToggle">
         <a href="index.php"><img src="assets/img/logo.png" alt="logo"></a>
         <div class="loginBtns">
-           <a href="login.php" class="signUpBtn">Login</a>
+           <a href="login.php" class="signUpBtn">login/ signUp</a>
         </div>
         <div class="user-name inactive-div">
             <p>Dragon Slayer5412</p>

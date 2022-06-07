@@ -17,14 +17,9 @@
                     </svg>
                   </button>
               </form>
-              <?php
-                             
-                         
+              <?php        
                              if(isset($_POST['searchQuerySubmit'])){
-                                   $search = $_POST['searchQueryInput'];
-                              
-                                  
-                                   
+                                   $search = $_POST['searchQueryInput'];               
                                    $_SESSION['add']= $search;
                                    header('location:lecturers.php');
                                }
@@ -40,16 +35,17 @@
 $search = $_SESSION["add"];
 
 # $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php ( for some reason it doesn't work')
-$sql = "SELECT * FROM professors"; # t
+echo $sql = "SELECT * FROM professors WHERE name like '{$search}'"; # t
 $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($result);
 
-
+echo 'starting ppint ';
 if($row > 0){
+    echo 'we didnt reach here ';
    
     while($rows=mysqli_fetch_assoc($result))
     {
-
+        echo 'loop';
     
          $id = $rows ['id'];
          $name = $rows ['name'];  
