@@ -86,7 +86,12 @@ if($row > 0){
 
 
 ?>
-
+</div>
+</div>
+<div class="center">
+        <p> Professos not availables <a class="addproff" href="">Add proff</a>
+        </p>
+    </div>
 
 </body>
 <script src="assets/javascript/main.js"></script>

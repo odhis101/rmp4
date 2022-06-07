@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/fonts.css">
-    <title>PROF</title>
+    <title>PROsF</title>
 </head>
 <body>
     <nav>

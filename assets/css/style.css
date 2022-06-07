@@ -55,24 +55,44 @@ nav img:nth-child(2){
 .signUpBtn{
     background: transparent;
    
-    border: solid 1px #111;
+    border: solid 1px rgb(177, 167, 167);
     cursor: pointer;
     padding: 7px 26px;
     height: auto;
     border-radius: 30px;
     font-family: poppins-regular;
     font-size: 18px;
-  
-}.signUpBtn a {
-    color: inherit;
     text-decoration: none;
-
+    color:inherit;
+}
+.signUpBtn a {
+    margin: 0 1rem;
+    font-size: 1.7rem;
+    color: black;
 }
 
-.userName{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.addproff {
+    display: inline-block;
+    
+    background: #339DFF;
+    color: #fff;
+    
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 38px;
+    border-radius: 50px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 170px;
+    text-align: center;
+  }
+  .center {
+   
+    width: 50%;
+    margin: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #27ae60;
 }
 
 .inactive-div{
