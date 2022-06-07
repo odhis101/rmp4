@@ -5,62 +5,48 @@ if(isset($_POST['login_btn'])){
                      
      $name = $_POST['username']; // getting the search inputs 
      $password = $_POST['password'];
-    echo $sql = "SELECT * FROM users WHERE name = '$name' AND password = '$password'";
+     $sql = "SELECT * FROM users WHERE name = '$name' AND password = '$password'";
     
      $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     echo $count = mysqli_num_rows($result);
     
     if($count > 0){
-		echo $id = $row['id'];
-       // header("location: index.php");
+		$id = $row['id'];
+		$_SESSION['id'] = $id;
+        header("location: index.php");
     }
     else{
         echo "Invalid Username or Password";
     }
-
-    #$_SESSION['add']= $search; // this moves the search data from the index page to load the search query in the redirected page 
-    //header('location:ratings.php');
     }
-    if(isset($_POST['sign_btn'])){
-                     
-        $name = $_POST['name']; // getting the search inputs 
-        $password = $_POST['password'];
-        $username = $_POST['username'];
-		$sql_check = "select * from users where username = '$username'"; 
-		$sql_check = mysqli_query($conn,$sql_check);
-		$count = mysqli_num_rows($sql_check);
-		if ($count >= 1) {
-			echo "Username already exists";
-		}
-		else{
-			$sql = "INSERT INTO users (name, username, password) VALUES ('$name', '$username', '$password')";
-			$result = mysqli_query($conn, $sql);
-			$sql_get_id = "SELECT id FROM users WHERE username = '$username'";
-			$result_id= mysqli_query($conn, $sql_get_id);
-			$row_id = mysqli_fetch_array($result_id);
-			$id = $row_id['id'];
-			$_SESSION['id'] = $id;
-			header("location: index.php");
-
-		}
+if(isset($_POST['sign_btn'])){
+					
+	$name = $_POST['name']; 
+	$password = $_POST['password'];
+	$username = $_POST['username'];
+	$sql_check = "select * from users where username = '$username'"; 
+	$sql_check = mysqli_query($conn,$sql_check);
+	$count = mysqli_num_rows($sql_check);
+	if ($count >= 1) {
+		echo "Username already exists";
 	}
-		elseif ($name == "" || $password == "" || $username == "") {
-			echo "Please fill in all the fields";
-		}
-	
-	
-		
-	
-       
-	
-       
-        //header("location: login.php");
+	elseif ($name == "" || $password == "" || $username == "") {
+		echo "Please fill in all the fields";
+	}
+	else{
+		$sql = "INSERT INTO users (name, username, password) VALUES ('$name', '$username', '$password')";
+		$result = mysqli_query($conn, $sql);
+		$sql_get_id = "SELECT id FROM users WHERE username = '$username'";
+		$result_id= mysqli_query($conn, $sql_get_id);
+		$row_id = mysqli_fetch_array($result_id);
+		$id = $row_id['id'];
+		$_SESSION['id'] = $id;
+		header("location: index.php");
 
-   
-       #$_SESSION['add']= $search; // this moves the search data from the index page to load the search query in the redirected page 
-       //header('location:ratings.php');
-       
+	}
+	
+}
             
     ?>
 <html>
