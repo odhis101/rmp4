@@ -1,6 +1,16 @@
 <?php include ('php/navbar_out.php'); 
 
     #echo ' <p style="color:#FF0000";>Red paragraph text</p>';
+    error_reporting(0);
+    
+if(isset($_SESSION['user_message'])){
+    echo $_SESSION['user_message'];
+    unset($_SESSION['user_message']);
+  }
+  if(isset($_SESSION['successful'])){
+    echo $_SESSION['successful'];
+    unset($_SESSION['successful']);
+  }
     $id =$_GET['lec_id'];
     $sql = "SELECT * FROM professors WHERE id = '$id'";
     $res = mysqli_query($conn,$sql);
@@ -102,10 +112,17 @@
                 <?php
                     }
                 }
+                else{
+                    echo '<p class="noReviews">No reviews yet</p>';
+                }
                 ?>
+               
             </div>
         </div>
-
+        <div class="center">
+        <p> Write a review <a class="addproff" href="user_rates.php?Lec_id=<?php echo $id ?>">Click Here</a>
+        </p>
+    </div>
 
     </section>
 

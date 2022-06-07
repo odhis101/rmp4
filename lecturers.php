@@ -1,4 +1,5 @@
 <?php include ('php/navbar_out.php'); 
+error_reporting(E_ALL ^ E_WARNING); 
 ?>
 
 <!--LECTURERS PAGE-->
@@ -31,17 +32,35 @@
             <br><br/>
             <div class="lectrurerCardsContainer">
 <?php
-
+$results_per_page = 14;
 $search = $_SESSION["add"];
 
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+}
+else{
+    $page = 1;
+}
+
+$this_page_first_result = ($page-1)*$results_per_page;
+
+$sql_check = "SELECT * FROM professors WHERE name LIKE'%$search%' LIMIT $this_page_first_result, $results_per_page";
+$result_check = mysqli_query($conn,$sql_check);
+
+/*--------------------------------------------------
+  new query to get the total number of results
+
+
+*/
 # $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php ( for some reason it doesn't work')
-$sql = "SELECT * FROM professors WHERE name LIKE'%$search%'";; # t
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_assoc($result);
+$sql = "SELECT * FROM professors WHERE name LIKE'%{$search}%'";
+$number_of_results = mysqli_num_rows(mysqli_query($conn, $sql_check));
+$row = mysqli_fetch_assoc($result_check);
+
 
 if($row > 0){
 
-    while($rows=mysqli_fetch_assoc($result))
+    while($rows=mysqli_fetch_assoc($result_check))
     {
   
     
@@ -51,17 +70,27 @@ if($row > 0){
          $sql2 = "SELECT AVG(rating) AS avg FROM ratings where proff_id =  $id ";
          $avg =  mysqli_query($conn, $sql2);
          $row2 = mysqli_fetch_assoc($avg);
+         $sql4 = "SELECT LENGTH(rating) AS REVIEWERS FROM `ratings`WHERE proff_id = $id";
+         $reviewers = mysqli_query($conn, $sql4);
+         $row4 = mysqli_fetch_assoc($reviewers);
+         if ($row4['REVIEWERS'] == 0) {
+            $reviewers = 0;
+            $average = 0;
     
+        }
+        else {
+            $reviewers = $row4['REVIEWERS'];
+            $average =$row3['avg'];
+        }
+        
 
 
 ?>
 
-      
-
             <a class="lecHref" href="lecturer_details.php?lec_id=<?php echo $id; ?>"> <!--.............LECTURER CARD...........-->
                 <div class="lecturerCard">
                     <h2><?php echo  $name ?> </h2>
-                    <p>29 Reviews</p>
+                    <p> reviewers <?php echo $reviewers;?></p>
                     <p><?php echo  $university ?></p>
                     <p class="lecturerRating"><?php echo $row2['avg']; ?></p>
                     <div class="ratingColorBox"></div>
@@ -77,16 +106,34 @@ if($row > 0){
     
     }
 }
+else{
+    echo "No results found";
+}
+
+
+
+
 
 
 ?>
+
 </div>
+
 </div>
 <div class="center">
         <p> Professos not availables <a class="addproff" href="">Add proff</a>
         </p>
     </div>
+<div class="pagination">
+<?php
+$number_of_pages = ceil($number_of_results/$results_per_page);
+for($page = 1; $page <= $number_of_pages; $page++){
+    echo "<a href='lecturers.php?page=$page'>$page</a>";
+}
+?>
+</div>
 
+<br>
 </body>
 <script src="assets/javascript/main.js"></script>
 </html>
