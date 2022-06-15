@@ -1,4 +1,8 @@
-<?php include ('php/navbar_out.php'); ?>
+<?php 
+
+include('php/navbar_check.php');
+
+?>
 
     <!--UNIVERSITIES PAGE-->
     <section class="universityPage">

@@ -1,8 +1,7 @@
 <?php 
-include('php/navbar_out.php');
+include('php/navbar_check.php');
 $id = $_SESSION['id'];
-
-
+ 
 ?>
 
 
@@ -21,18 +20,16 @@ $id = $_SESSION['id'];
         </div>
     </section>
 </body>
-
-<script src="assets/javascript/main.js"></script>
-</html>
 <?php 
 
 if(isset($_POST['searchQuerySubmit'])){
-   echo $search = $_POST['searchQueryInput']; // getting the search inputs 
+   $search = $_POST['searchQueryInput']; // getting the search inputs 
    $_SESSION['add']= $search; // this moves the search data from the index page to load the search query in the redirected page 
-   header('location:lecturers.php');
+   echo '<script type="text/javascript">';
+   echo 'window.location.href = "lecturers.php";';
+   echo '</script>';
 }
    
 ?>
-
 <script src="assets/javascript/main.js"></script>
 </html>

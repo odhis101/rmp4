@@ -1,5 +1,6 @@
-<?php include ('php/navbar_out.php'); 
-error_reporting(E_ALL ^ E_WARNING); 
+<?php  
+include('php/navbar_check.php');
+
 ?>
 
 <!--LECTURERS PAGE-->
@@ -20,7 +21,8 @@ error_reporting(E_ALL ^ E_WARNING);
               </form>
               <?php        
                              if(isset($_POST['searchQuerySubmit'])){
-                                   $search = $_POST['searchQueryInput'];               
+                              
+                                    $search = $_POST['searchQueryInput'];               
                                    $_SESSION['add']= $search;
                                    header('location:lecturers.php');
                                }
@@ -54,11 +56,10 @@ $result_check = mysqli_query($conn,$sql_check);
 */
 # $sql = "SELECT * FROM professors WHERE name LIKE'%$search%'"; # this is the search that we got from index.php ( for some reason it doesn't work')
 $sql = "SELECT * FROM professors WHERE name LIKE'%{$search}%'";
-$number_of_results = mysqli_num_rows(mysqli_query($conn, $sql_check));
-$row = mysqli_fetch_assoc($result_check);
+$number_of_results = mysqli_num_rows(mysqli_query($conn, $sql));
+$row = mysqli_num_rows($result_check);
 
-
-if($row > 0){
+if($row> 0){
 
     while($rows=mysqli_fetch_assoc($result_check))
     {
@@ -73,6 +74,7 @@ if($row > 0){
          $sql4 = "SELECT LENGTH(rating) AS REVIEWERS FROM `ratings`WHERE proff_id = $id";
          $reviewers = mysqli_query($conn, $sql4);
          $row4 = mysqli_fetch_assoc($reviewers);
+         
          if ($row4['REVIEWERS'] == 0) {
             $reviewers = 0;
             $average = 0;
@@ -96,7 +98,7 @@ if($row > 0){
                     <div class="ratingColorBox"></div>
                 </div>
             </a>
-           
+       
         
     
     <?php
@@ -110,11 +112,6 @@ else{
     echo "No results found";
 }
 
-
-
-
-
-
 ?>
 
 </div>
@@ -126,7 +123,8 @@ else{
     </div>
 <div class="pagination">
 <?php
-$number_of_pages = ceil($number_of_results/$results_per_page);
+ $number_of_pages = ceil($number_of_results/$results_per_page); 
+
 for($page = 1; $page <= $number_of_pages; $page++){
     echo "<a href='lecturers.php?page=$page'>$page</a>";
 }

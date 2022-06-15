@@ -1,7 +1,7 @@
 
 <?php 
 
-include('php/navbar_out.php');
+include('php/navbar_check.php');
 
 ?>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
@@ -243,7 +243,7 @@ $count4 = mysqli_num_rows($res4);
          #header ("Location:proff_details.php?food_id=2");
          ?>
          <script type="text/javascript">
-          window.location.href = 'lecturer_details.php?lec_id<?php echo $id; ?>';
+          window.location.href = 'lecturer_details.php?lec_id=<?php echo $id; ?>';
           </script>
           <?php
        } 

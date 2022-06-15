@@ -1,7 +1,6 @@
-<?php include ('php/navbar_out.php'); 
+<?php 
 
-    #echo ' <p style="color:#FF0000";>Red paragraph text</p>';
-    error_reporting(0);
+include('php/navbar_check.php');
     
 if(isset($_SESSION['user_message'])){
     echo $_SESSION['user_message'];
